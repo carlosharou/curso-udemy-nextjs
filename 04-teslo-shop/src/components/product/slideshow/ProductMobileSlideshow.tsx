@@ -8,7 +8,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 
 import './slideshow.css';
-import Image from "next/image";
+import ProductImage from "../product-image/ProductImage";
 
 
 interface Props {
@@ -21,31 +21,44 @@ interface Props {
 export const ProductMobileSlideshow = ({ images, title, className }: Props ) => {
     return (
         <div className={className}>
-            <Swiper
-                style={{
-                    width: '100vw',
-                    height: '500px'
-                }}
-                autoplay={{
-                    delay: 2500
-                }}
-                pagination={true}
-                modules={[ FreeMode, Autoplay, Pagination ]}
-                className="mySwiper2">
-                {
-                    images.map(image => (
-                        <SwiperSlide key={image}>
-                            <Image
-                                width={600}
-                                height={500}
-                                src={`/products/${image}`}
-                                alt={title}
-                                className="object-fill"
-                            />
-                        </SwiperSlide>
-                    ))
-                }
-            </Swiper>
+            {
+                images.length > 0
+                ? (
+                    <Swiper
+                        style={{
+                            width: '100vw',
+                            height: '500px'
+                        }}
+                        autoplay={{
+                            delay: 2500
+                        }}
+                        pagination={true}
+                        modules={[ FreeMode, Autoplay, Pagination ]}
+                        className="mySwiper2">
+                        {
+                            images.map(image => (
+                                <SwiperSlide key={image}>
+                                    <ProductImage
+                                        width={600}
+                                        height={500}
+                                        src={ image }
+                                        alt={title}
+                                        className="object-fill"
+                                    />
+                                </SwiperSlide>
+                            ))
+                        }
+                    </Swiper>
+                ) : (
+                    <ProductImage
+                        width={600}
+                        height={500}
+                        src={ "" }
+                        alt={title}
+                        className="object-fill"
+                    />
+                )
+            }
         </div>
     );
 }

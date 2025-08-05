@@ -47,6 +47,7 @@ export const paypalCheckPayment = async( transactionId: string ) => {
             }
         });
     } catch (error) {
+        console.log(error);
         return {
             ok: false,
             message: '500 - El pago no se pudo realizar'
@@ -92,6 +93,7 @@ const getPaypalToken = async() => {
             
         return result.access_token;
     } catch (error) {
+        console.log(error);
         return {
             ok: false,
             msg: `Error al generar el token: ${error}`
@@ -121,6 +123,7 @@ const verifyPayPalPayment = async( paypalTransactionId: string, bearerToken: str
 
         return result;
     } catch (error) {
+        console.log(error);
         return null;
     }
 }

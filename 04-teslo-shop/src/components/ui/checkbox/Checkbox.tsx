@@ -1,6 +1,6 @@
 interface Props {
     label: string;
-    registerForm: any;
+    registerForm: () => void;
 }
 
 const Checkbox = ({ label, registerForm }: Props) => {

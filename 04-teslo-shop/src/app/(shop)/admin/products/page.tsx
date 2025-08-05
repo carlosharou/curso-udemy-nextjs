@@ -3,8 +3,8 @@ export const revalidate = 0;
 // https://tailwindcomponents.com/component/hoverable-table
 import { getPaginatedProductsWithImages } from '@/actions';
 import { Pagination, Title } from '@/components';
+import ProductImage from '@/components/product/product-image/ProductImage';
 import { currencyFormat } from '@/utils';
-import Image from 'next/image';
 import Link from 'next/link';
 
 
@@ -49,11 +49,11 @@ const Orders = async({ searchParams }: Props) => {
                                     className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         <Link href={`/product/${_product.slug}`}>
-                                            <Image
-                                                src={`/products/${_product.productImage[0].url}`}
-                                                width={80}
-                                                height={80}
-                                                alt={_product.title}
+                                            <ProductImage
+                                                src={ _product.productImage[0]?.url }
+                                                width={ 80 }
+                                                height={ 80 }
+                                                alt={ _product.title }
                                                 className="w-20 h-20 object-cover rounded"
                                             />
                                         </Link>
